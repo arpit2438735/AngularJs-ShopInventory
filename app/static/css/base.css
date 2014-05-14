@@ -1,0 +1,41 @@
+.app-name {
+	font-size: 1.5em;
+	color: #F5DEB3;
+	border-bottom: 1px solid #FFF;
+	padding-bottom: 7px;
+}
+
+
+@media (min-width: 960px) {
+
+    /* Move the layout over so we can fit the nav + list in on the left */
+    #layout {
+        padding-left:500px; /* "left col (nav + list)" width */
+        position: relative;
+    }
+
+    /* These are position:fixed; elements that will be in the left 500px of the screen */
+    #nav, #list {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+    }
+    #nav {
+       position: fixed;
+       left: 0;
+       width: 190px;
+       height: 100%;
+    }
+
+    /* Show the menu items on the larger screen */
+    .nav-inner {
+        display: block;
+        padding: 2em 0;
+    }
+
+    /* Hide the "Menu" button on larger screens */
+    #nav .nav-menu-button {
+        display: none;
+    }
+}    
