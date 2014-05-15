@@ -1,10 +1,318 @@
+* {
+    box-sizing: border-box;
+}
+.stock-detail {
+    font-size: 0.8em;
+    margin-left: 8px;
+}
+.xs-header {
+    display: none;
+}
+.btn-add-inventory {
+    height: 1%;
+}
+.row-el {
+    padding: 10px;
+    text-align: center;
+}
+.tbl-row {
+    cursor: pointer;
+    overflow: hidden;
+    padding: 10px;
+}
+.tbl-header {
+    font-weight: bold;
+    text-align: center;
+}
+.item-mrp {
+    font-size: 0.8em;
+}
 .app-name {
-	font-size: 1.5em;
-	color: #F5DEB3;
-	border-bottom: 1px solid #FFF;
-	padding-bottom: 7px;
+    font-size: 1.5em;
+    color: wheat;
+    border-bottom: 1px solid white;
+    padding-bottom: 7px;
 }
 
+.btn-container {
+    margin: 1em;
+}
+.item-contents {
+    width: 100%;
+}
+.item-brand {
+    font-size: 0.9em;
+}
+.item-name {
+}
+.item-desc {
+    font-size: 0.9em;
+    line-height: 1.3em;
+    font-family: serif;
+}
+.item-block {
+}
+.center-align {
+    text-align: center;
+}
+.item-details {
+    width: 100%;
+}
+.item-preview {
+    cursor: pointer;
+}
+.item-thumbnail-image {
+    width: 50%;
+    height: auto;
+}
+#main.pure-u-1{
+    flex-grow: 1;
+    overflow: hidden;
+}
+#main .comment-grid{
+    width: auto;
+}
+.dashboard-btn {    
+    padding: .4em 1em;
+    border: 0 rgba(0,0,0,0);
+    /*border-radius: 28px;*/
+    overflow-x: hidden;
+    max-width: 150px;
+    font-size: 20px;
+}
+
+.aSearch {
+    color: #FFF;
+    padding-right: 15%;
+    opacity: .8;
+    text-decoration: underline;
+    padding-top: 10px;
+    cursor: pointer;
+}
+.filter.advanced-filter{
+  padding-top: 20px;
+}
+.filter .heading {
+    font-size: 1.5em;
+}
+#main
+{
+    margin-left:5%;
+    border: 4 solid #C9C8BD; 
+    margin-right:7%;
+}
+.author
+{
+    color: #E9322D;
+}
+#layout
+{
+    background-color:#f8f9fa;
+}
+.preview-header{
+    padding: 1em 2em;
+    border-bottom: 1px solid hsl(0, 0%, 87%);
+}
+.secondary-button.pure-button {
+    background: hsl(0, 100%, 100%);
+    border: 1px solid hsl(0, 0%, 87%);
+    color: hsl(0, 0%, 40%);
+    padding: 0.5em 2em;
+    margin-bottom:5px;
+    font-size: 80%;
+    border-radius: 20px;
+}
+.secondary-button:hover
+{
+    background-color: #DEDEDE;
+}
+.actions {
+    margin-top: 2em;
+    text-align: right;
+}
+.preview-body{
+    display: flex;
+    padding: 2em;
+    flex-direction: column;
+}
+.preview-window{
+    color: #666;
+}
+.like-summary{
+    font-size: .75em;
+}
+.preview-body .item-fields{
+    padding:0;
+    list-style: none;
+}
+.preview-body .item-fields .item-field{
+    padding-bottom: 1.5em;
+}
+.preview-body ul{
+    margin:0;
+}
+.active{
+    background: rgba(76, 133, 255, 0.42);
+}
+.item-preview .active{
+    background: #ecede8;
+}
+.pure-u-offset-1-4{
+    margin-left: 25%;
+}
+
+.item-heading{
+}
+.operations{
+    font-size: .8em;
+    color: #666;    
+}
+.operation { 
+    display: inline-block; 
+}
+
+.operation a{
+    color: #666;
+}
+.catalog
+{
+    height:30px;
+    width:60px;
+    margin: 5px 5px 5px 5px;
+}
+#item-comments{
+    color: #666;
+}
+.basic-info{
+    display: inline-block;
+    margin-top: 0.5em;
+    font-size: 0.8em;
+}
+.basic-info .field-box{
+    display: inline-block;
+}
+
+.item-price, .item-date-time{
+    text-align: left;
+    font-size: .9em;
+    color: #666;
+    padding-top: .5em;
+}
+
+/* Style form-controls */
+
+
+/* Style for relationship widget */
+relationship{
+    display: inline-block;
+    width: 60%;
+}
+
+
+
+/* Custom Media query for pure-grid */
+
+@media (max-width: 960px){
+    .preview-header{
+        padding: 0.5em 0.5em;
+    }
+    .secondary-button.pure-button{
+        padding: 0.5em 1em;
+    }
+    .pure-u-sm-1 {
+    width: 100%;
+    }
+    .pure-u-sm-1-5{
+        width: 20%;
+    }
+    .pure-u-sm-4-5{
+        width: 80%;
+    }
+    .search-header input[type="text"]{
+        display: inline;
+    }
+    
+    #list{
+        transition: all ease 0.5s;
+        -moz-transition: all ease 0.5s;
+        -webkit-transition: all ease 0.5s;
+        -o-transition: all ease 0.5s;
+        max-height: 9999px;
+    }
+    #list.hide-element{
+        max-height: 0;
+        max-width: 0;
+        overflow-y: hidden;
+    }
+    .pure-button.pure-hidden-desktop{
+        display: inline;
+    }   
+    .tbl-headers {
+    display: none;
+    }
+}
+
+@media (max-width: 496px){
+    #list{
+        transition: all ease 0.2s;
+        -moz-transition: all ease 0.2s;
+        -webkit-transition: all ease 0.2s;
+        -o-transition: all ease 0.2s;
+        max-height: 9999px;
+    }
+    .filter-item
+    {
+        width:60%;
+        margin-top:5px;
+        margin-left:20%;
+        alignment-adjust: central;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+    .pure-form input:not([type])
+    {display: inline-block;
+   }
+    #list.hide-element{
+        max-height: 0;
+        max-width: 0;
+        overflow: hidden;
+    }
+    .pure-u-xs-1-3{
+        width: 33%;
+    }
+    .pure-u-xs-2-3{
+        width: 67%;
+    }
+    .pure-u-xs-1{
+        width: 100%;
+    }
+    .pure-button.pure-hidden-desktop{
+        display: inline;
+    }
+}
+
+/* Style for workflow actions */
+.workflow-actions{
+    margin-left: 5%;
+    color : #EB9B4C;
+    font-size: 95%;
+}
+.summary
+{
+    width:100%;
+}
+.details-logo{
+    width: 74%;
+    max-height: 120px;
+}
+.pure-form-aligned .pure-control-group label{
+    vertical-align: top;
+}
+/*
+ * -- TABLET (AND UP) MEDIA QUERIES --
+ * On tablets and other medium-sized devices, we want to customize some
+ * of the mobile styles.
+ */
 
 @media (min-width: 960px) {
 
@@ -23,9 +331,9 @@
     }
     #nav {
        position: fixed;
-       left: 0;
-       width: 190px;
-       height: 100%;
+left: 0;
+width: 190px;
+height: 100%;
     }
 
     /* Show the menu items on the larger screen */
@@ -38,4 +346,76 @@
     #nav .nav-menu-button {
         display: none;
     }
-}    
+    .list
+    {
+        position: fixed;
+        left: 350px;
+    }
+    #list {
+        margin-left: -310px;
+        width: 100%;
+        height: 33%;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #main {
+        position: fixed;
+        top: 33%;
+        right: 0;
+        bottom: 0;
+        left: 150px;
+        overflow: auto;
+        width: auto; /* so that it's not 100% */
+    }
+}
+
+/*
+ * -- DESKTOP (AND UP) MEDIA QUERIES --
+ * On desktops and other large-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+@media (min-width: 960px) {
+
+    /* This will take up the entire height, and be a little thinner */
+    #list {
+        margin-left: -310px;
+        width:350px;
+        height: 100%;
+        border-right: 1px solid #ddd;
+    }
+
+    /* This will now take up it's own column, so don't need position: fixed; */
+    #main {
+        position: static;
+        margin: 0;
+    margin-left: -310px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .pure-u-xs-1 {
+    width: 100%;
+    }
+    .pure-u-xs-1-2 {
+    width: 50%;
+    text-align: left;
+    }
+    .xs-header {
+    display: block;
+    font-weight: bold;
+    }
+    .row-el {
+    width: 100%;
+    display: block;
+    text-align: left;
+    }
+.filter-item
+    {
+        width:60%;
+        margin-top:5px;
+        alignment-adjust: central;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+}

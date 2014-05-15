@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="shopInventoryApp">
     <head>
         <title>Shopinventory</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,6 +17,7 @@
 
 <body>
 <div id="nav" class="pure-u-1-4 pure-u-sm-1">
+  <a href="javascript:void(0)" class="nav-menu-button">Menu</a>
   <div class="nav-inner">
 	   <div class="app-name">Shop Inventory</div>
 	   <div class="pure-menu pure-menu-open">
@@ -34,6 +35,104 @@
 	    </div>
   </div>	    
 </div>
-
+<div id="layout" ng-view>
+ <script type="text/ng-template" id="app-template">
+        
+        
+            
+<div id="list" style="min-width: 86%;" class="pure-u-3-4 pure-u-sm-1" ng-hide="hideListView" ng-class="{'hide-element': hideListView}">
+            
+<div class="pure-u-1 search-header pure-form">
+	<div class="success" ng-if="success" style="position:fixed; top:0; width:100%; height:80px;">
+		[[message]]
+	</div>
+	<div class="error" ng-if="error" style="position:fixed; top:0; width:100%; height:80px;">
+		[[message]]
+	</div>
+    <div class="pure-form">
+    	<input class="pure-input-rounded" type="text" ng-model="searchText" 
+    	name="Search" placeholder="Search"></input>
+    	
+        <span class="search-icon fa fa-search">&nbsp;</span>
+        <button class="primary-button pure-button">Search</button>
+        <a class="aSearch"  ng-click="filters=!filters">Advanced Search</a>
+    	<button class="primary-button pure-button" ng-click="createResource()">+ Add Product</button>
+        
+        
+</div>
+</div>
+<div class="pure-u-1 filter advanced-filter" ng-show="filters">
+    <div class="pure-form">
+    	<label class="filter-item heading"><span class="fa fa-filter"></span> Filter </label>
+    	
+        <select type="text" class= "filter-item" name="Category" placeholder="Category" ng-model="category" 
+        ng-init="category='All Category'">
+        <option>Electronics</option>
+        <option>Grocery</option>
+        <option>Garments</option>
+        <option>Others</option>	
+        <option>All Category</option>	
+        </select>
+        <select type="text" class= "filter-item" name="subCategory" placeholder="subCategory" ng-model="subCategory" 
+        ng-init="subCategory='All Sub Category'">
+        <option></option>
+        <option>Mobile</option>
+        <option>Men</option>
+        <option>Women</option>	
+        <option>Vegetables</option>
+        <option>Food</option>
+        <option>Book</option>
+        <option>Other</option>
+        <option>All Sub Category</option>	
+        </select>
+        <input class="filter-item" name="Brand" 
+        placeholder="Brand" ng-model="brand" />
+        <input class="filter-item" name="Price" 
+        placeholder="MinPrice-MaxPrice" ng-model="price" />
+    </div>
+</div>
+<hr/>
+    <div class="tbl-headers pure-g">
+        <div class="tbl-header pure-u-1-6"></div>
+        <div class="tbl-header pure-u-1-6">Name</div>
+        <div class="tbl-header pure-u-1-6">Brand</div>
+        <div class="tbl-header pure-u-1-6">Description</div>
+        <div class="tbl-header pure-u-1-6">MRP</div>
+    </div>
+    <div class="tbl-rows">
+        <div class="tbl-row" ng-repeat="item in items | filter: searchText">
+    	<div class="pure-g" ng-include="templateName" ></div>
+        </div>
+    </div>
+</div>
+        
+</script>
+<script type="text/ng-template" id="inventory-data-list.html">
+	 <div class="row-el pure-u-1-6 pure-u-xs-1">
+	    <img style="100%;" src="[[item.image]]" />
+	 </div>
+	<div class="xs-header">Name</div>
+	<div class="row-el pure-u-1-6">[[item.repr]]</div>
+	<div class="xs-header">Brand</div>
+	<div class="row-el pure-u-1-6">[[item.brand]]</div>
+	<div class="xs-header">Description</div>
+	<div class="row-el pure-u-1-6">[[item.description]]</div>
+	<div class="xs-header">MRP</div>
+	<div class="row-el pure-u-1-6">[[item.mrp.currency]] [[item.mrp.value]]</div>
+	<div class="pure-u-xs-1 pure-u-1-6 inp-container">
+	    <div class="stock-detail">Current Stock : [[item.stock]]</div>
+	  <button ng-disabled="item.stock <= 0" ng-click="setTransactionType('sale')" class="btn-add-inventory secondary-button pure-button">Sale</button>
+	  <button ng-click="setTransactionType('purchase')" class="btn-add-inventory secondary-button pure-button">Purchase</button>
+	  <span style="display: none;">Qty</span>
+	      <input ng-click="stopProp($event)" style="display: none;width: 57px; height: 25px; text-align: center;" type="number" ng-model="quantity" ng-init="quantity=item.stock" name="quantity"/>
+	  <button ng-click="changeStock(item, quantity)" ng-disabled="quantity<=0" style="display: none;" class="btn-add-inventory secondary-button pure-button">Update</button>
+	</div>
+</script>
+</div>
+<script src="./static/libs/js/angular.min.js" type="text/javascript"></script>
+<script src="./static/libs/js/angular-route.min.js" type="text/javascript"></script>
+<script src="./static/js/service.js" type="text/javascript"></script>
+<script src="./static/js/controller.js" type="text/javascript"></script>
+<script src="./static/js/app.js" type="text/javascript"></script>
 </body>    
 </html>        
