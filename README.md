@@ -1,7 +1,7 @@
 AngularJs-ShopInventory
 =======================
 
-###Prequesite 
+###Prerequisite 
 1. Node.js install ```sudo apt-get install nodejs```
 2. ```npm install express``` to run the app
 3. ```npm install karma``` to run test cases
