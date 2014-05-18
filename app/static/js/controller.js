@@ -7,6 +7,13 @@ angular.module("shopInventoryApp.controllers", [])
   $scope.items = {};
   inventoryService.init();
   /** Getting the data from Inventory Service **/
-  $scope.items = inventoryService.getItem().data;
+  var getItem = inventoryService.getItem();
+  if(getItem.then && getItem.then instanceof Function){
+  	getItem.then(function(data){
+      $scope.items = data;
+  	});
+   } else{
+  	$scope.items = getItem;
+   }
   $scope.templateName = 'inventory-data-list.html';
 });

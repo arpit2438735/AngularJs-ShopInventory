@@ -1,53 +1,10 @@
-"use strict;"
+"use strict";
 
 angular.module("shopInventoryApp.services", [])
 
-.service('inventoryService', function(localStorage){
-    /**FIXME need to use MONGOLAB API **/
-	var item, dummyData = {
-    "data": [
-        {
-            "brand": "Zovi",
-            "category": "Garments",
-            "cost": {
-                "currency": "Rs",
-                "value": 200
-            },
-            "description": "A brown top which features a panel on the center front with slight gathers under the neckline and three fourth sleeves.",
-            "id": "53733bb409acce2ff660e125",
-            "image": "http://outofprintclothing.com/wp-content/uploads/2012/11/IMG_3619-copy-219x219.jpg",
-            "item": "Brown Top",
-            "mrp": {
-                "currency": "Rs",
-                "value": 300
-            },
-            "owner": "5225f17d57fa8319738c8b07",
-            "repr": "Brown Top",
-            "stock": 3,
-            "subcategory": "Men"
-        },
-        {
-            "brand": "Zovi",
-            "category": "Garments",
-            "cost": {
-                "currency": "Rs",
-                "value": 200
-            },
-            "description": "A brown top which features a panel on the center front with slight gathers under the neckline and three fourth sleeves.",
-            "id": "5345487f09acce1cb225e90d",
-            "image": "http://outofprintclothing.com/wp-content/uploads/2012/11/IMG_3619-copy-219x219.jpg",
-            "item": "Brown Top",
-            "mrp": {
-                "currency": "Rs",
-                "value": 300
-            },
-            "owner": "5225f17d57fa8319738c8b07",
-            "repr": "Brown Top",
-            "stock": 1,
-            "subcategory": "Men"
-        }
-       ]
-    };
+.service('inventoryService', function(localStorage, mongoDbConnect, $q){
+    
+	var item, defer = $q.defer(), successData;
 
 	this.init = function() {
        item = localStorage.get("inventory");
@@ -55,14 +12,39 @@ angular.module("shopInventoryApp.services", [])
 
 	this.getItem = function() {
        if(!item) {
-         localStorage.save('inventory', dummyData);
+         mongoDbConnect.getShopInventory('shopinventory','inventory').
+                        then(function(response){
+            successData = response.data[0].data;
+            defer.resolve(successData);
+         });
+         localStorage.save('inventory', defer.promise);               
          this.init();
-       }
+         return defer.promise;
+        }
        return item;
 	}
 
 })
 
+.service('mongoDbConnect',function($http) {
+    var apiKey = 'PCAagNjtOMX4y1gTjqaLtWaqSNoomJLp',
+        _url = 'https://api.mongolab.com/api/1/databases/';
+
+    this._generateUrl = function (url, method) {
+        return $http({
+                method: method,
+                url: url,
+                params : {
+                    apiKey : apiKey
+                }
+        });
+    }
+
+    this.getShopInventory = function(database,collection) {
+        var url = _url + database + "/collections/" + collection;
+        return this._generateUrl(url,'GET');
+    };
+})
 
 .service("localStorage",function(){
    
@@ -83,6 +65,12 @@ angular.module("shopInventoryApp.services", [])
         },
 
         save: function (key, value) {
+            if (typeof value === 'object'){
+                value.then(function(data){
+                  localStorage.setItem(key, JSON.stringify(data));  
+                });
+                return;
+            }
             localStorage.setItem(key, JSON.stringify(value));
         },
 
