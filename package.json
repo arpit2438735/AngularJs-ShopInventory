@@ -1,0 +1,10 @@
+{
+ "name":"shopinventory",
+  "version":"0.0.1",
+  "dependencies":{
+      "express":""
+  },
+  "scripts": {
+        "start": "node server.js"
+  }
+}
